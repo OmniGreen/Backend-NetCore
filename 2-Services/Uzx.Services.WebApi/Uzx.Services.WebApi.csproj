@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>11e52ca9-c613-44f9-88d2-c960cf284724</UserSecretsId>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'WebApiTeste' " />
+  <ItemGroup>
+    <Compile Remove="Controllers\Admin\AddressController.cs" />
+    <Compile Remove="Controllers\Admin\AddressTypesController.cs" />
+    <Compile Remove="Controllers\Admin\AgentsController.cs" />
+    <Compile Remove="Controllers\Admin\BreedsController.cs" />
+    <Compile Remove="Controllers\Admin\CidsController.cs" />
+    <Compile Remove="Controllers\Admin\CitiesController.cs" />
+    <Compile Remove="Controllers\Admin\ClientsConfigurationsController.cs" />
+    <Compile Remove="Controllers\Admin\ClientsContactsController.cs" />
+    <Compile Remove="Controllers\Admin\ClientsNewsletterController.cs" />
+    <Compile Remove="Controllers\Admin\ClientsOperatorsController.cs" />
+    <Compile Remove="Controllers\Admin\ClientsSystemsController.cs" />
+    <Compile Remove="Controllers\Admin\CompanyOperatorsController.cs" />
+    <Compile Remove="Controllers\Admin\CostCenterController.cs" />
+    <Compile Remove="Controllers\Admin\CountriesController.cs" />
+    <Compile Remove="Controllers\Admin\DepartmentsController.cs" />
+    <Compile Remove="Controllers\Admin\DoctorsController.cs" />
+    <Compile Remove="Controllers\Admin\EducationsController.cs" />
+    <Compile Remove="Controllers\Admin\FamilyTypeController.cs" />
+    <Compile Remove="Controllers\Admin\FunctionsController.cs" />
+    <Compile Remove="Controllers\Admin\GroupUsersController.cs" />
+    <Compile Remove="Controllers\Admin\GroupUsersMenusController.cs" />
+    <Compile Remove="Controllers\Admin\HigherController.cs" />
+    <Compile Remove="Controllers\Admin\HospitalsController.cs" />
+    <Compile Remove="Controllers\Admin\kinshipController.cs" />
+    <Compile Remove="Controllers\Admin\LanguagesController.cs" />
+    <Compile Remove="Controllers\Admin\MaritalStatusController.cs" />
+    <Compile Remove="Controllers\Admin\MenusController.cs" />
+    <Compile Remove="Controllers\Admin\MenusTypeController.cs" />
+    <Compile Remove="Controllers\Admin\OfficesController.cs" />
+    <Compile Remove="Controllers\Admin\PlansController.cs" />
+    <Compile Remove="Controllers\Admin\ProceduresController.cs" />
+    <Compile Remove="Controllers\Admin\ProvidersController.cs" />
+    <Compile Remove="Controllers\Admin\ResponsabilitiesController.cs" />
+    <Compile Remove="Controllers\Admin\ShiftsController.cs" />
+    <Compile Remove="Controllers\Admin\SpecialitiesController.cs" />
+    <Compile Remove="Controllers\Admin\StatesController.cs" />
+    <Compile Remove="Controllers\Admin\StatusController.cs" />
+    <Compile Remove="Controllers\Admin\StatusSolicitationController.cs" />
+    <Compile Remove="Controllers\Admin\SystemsController.cs" />
+    <Compile Remove="Controllers\Admin\SystemsLanguagesController.cs" />
+    <Compile Remove="Controllers\Admin\SystemsMenusController.cs" />
+    <Compile Remove="Controllers\Admin\TransportLinesController.cs" />
+    <Compile Remove="Controllers\Admin\TransportsController.cs" />
+    <Compile Remove="Controllers\Admin\TreatmentsController.cs" />
+    <Compile Remove="Controllers\Admin\TypeProvidersController.cs" />
+    <Compile Remove="Controllers\Admin\TypeSolicitationController.cs" />
+    <Compile Remove="Controllers\Admin\TypeTransportsController.cs" />
+    <Compile Remove="Controllers\Admin\UnionsController.cs" />
+    <Compile Remove="Controllers\Admin\UsersAccessController.cs" />
+    <Compile Remove="Controllers\Admin\UsersController.cs" />
+    <Compile Remove="Controllers\Admin\UsersPermissionsController.cs" />
+    <Compile Remove="Controllers\Admin\UsersPermissionsMenusController.cs" />
+    <Compile Remove="Controllers\Admin\UsersPropertiesController.cs" />
+    <Compile Remove="Controllers\Admin\UsersStatusController.cs" />
+    <Compile Remove="Controllers\Admin\UsersTokensController.cs" />
+    <Compile Remove="Controllers\Admin\UsersTypesController.cs" />
+    <Compile Remove="Interfaces\Admin\IAddressTypesController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\3-Application\Uzx.Application\Uzx.Application.csproj" />
+    <ProjectReference Include="..\..\4-Domain\Uzx.Domain\Uzx.Domain.csproj" />
+    <ProjectReference Include="..\..\5-Infra\Uzx.Infra.Commons\Uzx.Infra.Commons.csproj" />
+    <ProjectReference Include="..\..\5-Infra\Uzx.Infra.CrossCutting.Bus\Uzx.Infra.CrossCutting.Bus.csproj" />
+    <ProjectReference Include="..\..\5-Infra\Uzx.Infra.CrossCutting.Identity\Uzx.Infra.CrossCutting.Identity.csproj" />
+    <ProjectReference Include="..\..\5-Infra\Uzx.Infra.CrossCutting.IoC\Uzx.Infra.CrossCutting.IoC.csproj" />
+    <ProjectReference Include="..\..\5-Infra\Uzx.Infra.TransferObjects\Uzx.Infra.TransferObjects.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+    <PackageReference Include="AWSSDK.S3" Version="3.5.9.1" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.WebHost" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".ebextensions\https-backendsecurity.config" />
+    <None Include=".ebextensions\https-reencrypt-alb.config" />
+    <None Include=".ebextensions\https-lbsecuritygroup.config" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Uzx.Infra.Data\Uzx.Infra.Data.csproj" />
+    <ProjectReference Include="..\..\3-Application\Uzx.Application\Uzx.Application.csproj" />
+    <ProjectReference Include="..\..\4-Domain\Uzx.Domain\Uzx.Domain.csproj" />
+    <ProjectReference Include="..\..\4-Domain\Uzx.Domain.Core\Uzx.Domain.Core.csproj" />
+    <ProjectReference Include="..\Uzx.Infra.CrossCutting.Bus\Uzx.Infra.CrossCutting.Bus.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+</Project>
