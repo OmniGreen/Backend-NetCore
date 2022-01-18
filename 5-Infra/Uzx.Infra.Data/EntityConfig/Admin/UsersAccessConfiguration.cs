@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Uzx.Domain.Entities.Admin;
 
 namespace Uzx.Infra.Data.EntityConfig.Admin {
-    public class UsersAccessConfiguration : IEntityTypeConfiguration<UsersAccess> 
+    public class UsersAccessConfiguration : IEntityTypeConfiguration<UsersProfile> 
     {
-        public void Configure (EntityTypeBuilder<UsersAccess> builder) {
+        public void Configure (EntityTypeBuilder<UserAccess> builder) {
             builder.HasKey (s => s.UserAccessId);
             builder.Property (s => s.UserId); //Guid
             builder.Property (s => s.Login).HasColumnType ("varchar(200)");

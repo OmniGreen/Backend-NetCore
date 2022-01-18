@@ -4,7 +4,7 @@ using Uzx.Infra.TransferObjects.Admin;
 
 namespace Uzx.Services.WebApi.Interfaces.Admin
 {
-    public interface IUsersAccessController: IBaseController<UsersAccess, UsersAccessTrans>
+    public interface IUsersAccessController: IBaseController<UsersProfile, UsersAccessTrans>
     {
     }
 }

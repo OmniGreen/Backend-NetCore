@@ -14,15 +14,13 @@ namespace Uzx.Infra.Data.Context
 
         public UzxBaseDbContext(DbContextOptions<UzxBaseDbContext> options) : base(options) { }
 
-
         #region Users
         public DbSet<Users> Users { get; set; }
         public DbSet<UsersSite> UsersSite { get; set; }
 
         public DbSet<UsersTypes> UsersTypes { get; set; }
-        public DbSet<UsersAccess> UsersAccess { get; set; }
+        public DbSet<UsersProfile> UsersAccess { get; set; }
         public DbSet<UsersStatus> UsersStatus { get; set; }
-        //public  DbSet<UsersAddress> UsersAddress { get; set; }
         public DbSet<UsersTokens> UsersTokens { get; set; }
 
         #endregion
@@ -30,6 +28,7 @@ namespace Uzx.Infra.Data.Context
         #region Menu
 
         public DbSet<Menus> Menus { get; set; }
+
         public DbSet<MenusTypes> MenusType { get; set; }
 
         #endregion
@@ -50,9 +49,7 @@ namespace Uzx.Infra.Data.Context
         public DbSet<Countries> Countries { get; set; }
         public DbSet<States> States { get; set; }
         public DbSet<Cities> Cities { get; set; }
-        //public  DbSet<Localidade> Localidades { get; set; }
-        //public  DbSet<Bairro> Bairros { get; set; }
-        //public  DbSet<Logradouro> Logradouros { get; set; }
+        
         #endregion
 
         #region Clients
@@ -79,6 +76,8 @@ namespace Uzx.Infra.Data.Context
 
         #region Languages
         public DbSet<Languages> Languages { get; set; }
+        public DbSet<Traductions> Traductions { get; set; }
+        public DbSet<LanguagesTraductions> LanguagesTraductions { get; set; }
         #endregion
 
         #region Permissions
@@ -104,6 +103,16 @@ namespace Uzx.Infra.Data.Context
 
         #region Department
         public DbSet<Departments> Departments { get; set; }
+
+        #endregion
+        #region Modules
+        public DbSet<Modules> Modules { get; set; }
+        public DbSet<ModulesLanguages> ModulesLanguages { get; set; }
+        public DbSet<ModulesMenus> ModulesMenu { get; set; }
+        #endregion
+
+        #region Tenants
+        public DbSet<Tenants> Tenants { get; set; }
         #endregion
 
         #region FamilyType
@@ -169,7 +178,6 @@ namespace Uzx.Infra.Data.Context
             modelBuilder.ApplyConfiguration(new BreedsConfiguration());
             modelBuilder.ApplyConfiguration(new CidsConfiguration());
             modelBuilder.ApplyConfiguration(new CitiesConfiguration());
-            modelBuilder.ApplyConfiguration(new ClientsConfiguration());
             modelBuilder.ApplyConfiguration(new ClientsContactsConfiguration());
             modelBuilder.ApplyConfiguration(new ClientsNewsletterConfiguration());
             modelBuilder.ApplyConfiguration(new ClientsOperatorsConfiguration());
@@ -182,14 +190,9 @@ namespace Uzx.Infra.Data.Context
             modelBuilder.ApplyConfiguration(new EducationsConfiguration());
             modelBuilder.ApplyConfiguration(new FamilyTypeConfiguration());
             modelBuilder.ApplyConfiguration(new FunctionsConfiguration());
-            modelBuilder.ApplyConfiguration(new GroupUsersConfiguration());
-            modelBuilder.ApplyConfiguration(new GroupUsersMenusConfiguration());
             modelBuilder.ApplyConfiguration(new HigherConfiguration());
             modelBuilder.ApplyConfiguration(new HospitalsConfiguration());
             modelBuilder.ApplyConfiguration(new kinshipConfiguration());
-            modelBuilder.ApplyConfiguration(new LanguagesConfiguration());
-            modelBuilder.ApplyConfiguration(new MaritalStatusConfiguration());
-            modelBuilder.ApplyConfiguration(new MenusConfiguration());
             modelBuilder.ApplyConfiguration(new MenusTypeConfiguration());
             modelBuilder.ApplyConfiguration(new OfficesConfiguration());
             modelBuilder.ApplyConfiguration(new PlansConfiguration());
@@ -211,10 +214,7 @@ namespace Uzx.Infra.Data.Context
             modelBuilder.ApplyConfiguration(new TypeSolicitationConfiguration());
             modelBuilder.ApplyConfiguration(new TypeTransportsConfiguration());
             modelBuilder.ApplyConfiguration(new UnionsConfiguration());
-            modelBuilder.ApplyConfiguration(new UsersAccessConfiguration());
-            modelBuilder.ApplyConfiguration(new UsersConfiguration());
-            modelBuilder.ApplyConfiguration(new UsersPermissionsConfiguration());
-            modelBuilder.ApplyConfiguration(new UsersPermissionsMenusConfiguration());
+            //modelBuilder.ApplyConfiguration(new UsersAccessConfiguration());
             modelBuilder.ApplyConfiguration(new UsersPropertiesConfiguration());
             modelBuilder.ApplyConfiguration(new UsersStatusConfiguration());
             modelBuilder.ApplyConfiguration(new UsersTokensConfiguration());
@@ -233,7 +233,22 @@ namespace Uzx.Infra.Data.Context
             modelBuilder.ApplyConfiguration(new CustomersEventsConfiguration());
             modelBuilder.ApplyConfiguration(new CustomersBannersConfiguration());
             modelBuilder.ApplyConfiguration(new CustomersCouponsConfiguration());
-
+            modelBuilder.ApplyConfiguration(new UsersPermissionsMenusConfiguration());
+            modelBuilder.ApplyConfiguration(new ClientsConfiguration());
+            modelBuilder.ApplyConfiguration(new GroupUsersConfiguration());
+            modelBuilder.ApplyConfiguration(new GroupUsersMenusConfiguration());
+            modelBuilder.ApplyConfiguration(new LanguagesConfiguration());
+            modelBuilder.ApplyConfiguration(new LanguagesTraductionsConfiguration());
+            modelBuilder.ApplyConfiguration(new MaritalStatusConfiguration());
+            modelBuilder.ApplyConfiguration(new MenusConfiguration());
+            modelBuilder.ApplyConfiguration(new ModulesConfiguration());
+            modelBuilder.ApplyConfiguration(new ModulesLanguagesConfiguration());
+            modelBuilder.ApplyConfiguration(new ModulesMenusConfiguration());
+            modelBuilder.ApplyConfiguration(new TenantsConfiguration());
+            modelBuilder.ApplyConfiguration(new TraductionsConfiguration());
+            modelBuilder.ApplyConfiguration(new UsersConfiguration());
+            modelBuilder.ApplyConfiguration(new UsersPermissionsConfiguration());
+            modelBuilder.ApplyConfiguration(new UsersProfileConfiguration());
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
@@ -271,7 +286,6 @@ namespace Uzx.Infra.Data.Context
 
 
             //base.OnModelCreating(modelBuilder);
-
 
             modelBuilder.Seed();
         }

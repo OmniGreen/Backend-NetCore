@@ -5,8 +5,9 @@ namespace Uzx.Domain.Entities.Admin
 {
     public  class GroupUsers : BaseEntity
     {
-        public  Guid GroupUserId { get; set; }
-        public  Guid SystemId { get; set; }
-        public  string Name { get; set; }
+        public  Guid IdGroupUser { get; set; }
+        public  Guid IdClient { get; set; }
+        public  string NmGroupUser { get; set; }
+
     }
 } 

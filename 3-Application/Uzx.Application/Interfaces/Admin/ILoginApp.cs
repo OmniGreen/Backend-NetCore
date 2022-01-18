@@ -8,13 +8,13 @@ namespace Uzx.Application.Interfaces.Admin
 {
     public interface ILoginApp 
     {
-        Task<LoginTrans> GetDataLogin(Guid UserId);
-        Task<LoginTrans> GetDataLoginSite(Guid UserId);
-        Task<LoginTokenTrans> LoginToken(LoginTokenTrans searchRecord);
-        Task<LoginTokenTrans> LoginTokenSite(LoginTokenTrans searchRecord);
+        //Task<LoginTrans> GetDataLogin(Guid UserId);
+        //Task<LoginTrans> GetDataLoginSite(Guid UserId);
+        //Task<LoginTokenTrans> LoginToken(LoginTokenTrans searchRecord);
+        //Task<LoginTokenTrans> LoginTokenSite(LoginTokenTrans searchRecord);
         bool activateAccess(string key);
         bool recoverPassword(LoginTrans searchRecord);
-        Task<LoginTrans> Login(LoginReceiveTrans  searchRecord);
+        //Task<LoginTrans> Login(LoginReceiveTrans  searchRecord);
     }
 }
     

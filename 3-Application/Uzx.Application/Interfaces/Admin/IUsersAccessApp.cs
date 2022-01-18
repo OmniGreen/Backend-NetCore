@@ -4,7 +4,7 @@ using Uzx.Infra.TransferObjects.Admin;
 
 namespace Uzx.Application.Interfaces.Admin
 {
-    public interface IUsersAccessApp: IBaseApp<UsersAccess, UsersAccessTrans>
+    public interface IUsersAccessApp: IBaseApp<UsersProfile, UsersAccessTrans>
     {
     }
 }

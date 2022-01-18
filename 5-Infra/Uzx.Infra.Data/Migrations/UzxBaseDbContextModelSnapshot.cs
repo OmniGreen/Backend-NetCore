@@ -2,8 +2,8 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Uzx.Infra.Data.Context;
 
 namespace Uzx.Infra.Data.Migrations
@@ -15,32 +15,32 @@ namespace Uzx.Infra.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityByDefaultColumns()
-                .HasAnnotation("Relational:MaxIdentifierLength", 63)
+                .UseIdentityColumns()
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.2");
 
             modelBuilder.Entity("Uzx.Domain.Core.Events.StoredEvent", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("AggregateId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Data")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MessageType")
                         .HasColumnType("varchar(100)")
                         .HasColumnName("Action");
 
                     b.Property<DateTime>("Timestamp")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("datetime2")
                         .HasColumnName("CreationDate");
 
                     b.Property<string>("User")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -51,7 +51,7 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("AddressId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("City")
                         .HasColumnType("varchar(100)");
@@ -63,19 +63,19 @@ namespace Uzx.Infra.Data.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Neighborhood")
                         .HasColumnType("varchar(100)");
@@ -84,7 +84,7 @@ namespace Uzx.Infra.Data.Migrations
                         .HasColumnType("varchar(10)");
 
                     b.Property<Guid>("OwnerId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Patio")
                         .HasColumnType("varchar(100)");
@@ -93,13 +93,13 @@ namespace Uzx.Infra.Data.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ZipCode")
                         .HasColumnType("varchar(9)");
@@ -113,31 +113,31 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("AdressTypesId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("AdressTypesId");
 
@@ -148,37 +148,37 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("AgentId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("AgentId");
 
@@ -189,37 +189,37 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("BannerId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CustomerId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtEnd")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtStart")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("NameBanner")
                         .HasColumnType("varchar(500)");
@@ -234,13 +234,13 @@ namespace Uzx.Infra.Data.Migrations
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("BannerId");
 
@@ -251,40 +251,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("BreedsId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("BreedsId");
 
@@ -295,13 +295,13 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("CategoryId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CategoryParentId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Color")
                         .HasColumnType("varchar(200)");
@@ -310,40 +310,40 @@ namespace Uzx.Infra.Data.Migrations
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Icon")
                         .HasColumnType("varchar(200)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDestaque")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsEvent")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("CategoryId");
 
@@ -354,40 +354,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("CidsId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("CidsId");
 
@@ -398,37 +398,37 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("CityId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid>("StateId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ZipCode")
                         .HasColumnType("varchar(9)");
@@ -442,10 +442,10 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("ClientId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("AgentId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Document1")
                         .HasColumnType("varchar(200)");
@@ -454,28 +454,31 @@ namespace Uzx.Infra.Data.Migrations
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtBirth")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Gender")
                         .HasColumnType("varchar(200)");
 
+                    b.Property<Guid>("IdTenant")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsAdmin")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name1")
                         .HasColumnType("varchar(200)");
@@ -484,19 +487,19 @@ namespace Uzx.Infra.Data.Migrations
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid>("ParentId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Person")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ClientId");
 
@@ -505,8 +508,9 @@ namespace Uzx.Infra.Data.Migrations
                     b.HasData(
                         new
                         {
-                            ClientId = new Guid("ff65068a-d0a9-4445-af16-1ec152e5b37a"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 942, DateTimeKind.Local).AddTicks(5328),
+                            ClientId = new Guid("4b461a7f-faa4-4630-84f6-ffbc0391d0dd"),
+                            DtInsert = new DateTime(2022, 1, 17, 23, 21, 52, 110, DateTimeKind.Local).AddTicks(8730),
+                            IdTenant = new Guid("00000000-0000-0000-0000-000000000000"),
                             IsActive = true,
                             IsAdmin = true,
                             IsDeleted = false,
@@ -522,73 +526,73 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("ClientConfigurationId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("AccessPort")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("DataBaseIP")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DataBaseLogin")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DataBaseName")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DataBasePassword")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FilePath")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsCampaingSave")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<int>("LevelFields")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("enableSsl")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("smtpPass")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("smtpPort")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("smtpServer")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("smtpUser")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ClientConfigurationId");
 
@@ -599,10 +603,10 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("ClientContactId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ContactEmail")
                         .HasColumnType("varchar(200)");
@@ -614,28 +618,28 @@ namespace Uzx.Infra.Data.Migrations
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ClientContactId");
 
@@ -646,37 +650,37 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("ClientNewsletterId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasColumnType("varchar(200)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ClientNewsletterId");
 
@@ -687,37 +691,37 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("ClientOperatorId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<Guid>("OperatorId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ClientOperatorId");
 
@@ -728,101 +732,89 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("ClientSystemId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<Guid>("SystemId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ClientSystemId");
 
                     b.HasIndex("SystemId");
 
                     b.ToTable("ClientsSystems");
-
-                    b.HasData(
-                        new
-                        {
-                            ClientSystemId = new Guid("a9ef9881-ea0e-4ca2-924b-fdeefedacea0"),
-                            ClientId = new Guid("ff65068a-d0a9-4445-af16-1ec152e5b37a"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 944, DateTimeKind.Local).AddTicks(7255),
-                            IsActive = true,
-                            IsDeleted = false,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        });
                 });
 
             modelBuilder.Entity("Uzx.Domain.Entities.Admin.CompanyOperators", b =>
                 {
                     b.Property<Guid>("CompanyOperatorId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Alt")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Icone")
                         .HasColumnType("varchar(200)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("CompanyOperatorId");
 
@@ -833,40 +825,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("CostCenterId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("CostCenterId");
 
@@ -877,37 +869,37 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("CountryId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Acronym")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("CountryId");
 
@@ -918,55 +910,55 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("CouponId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Code")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid>("CustomerId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtEnd")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtStart")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<int>("Quantity")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Value")
                         .HasColumnType("varchar(200)");
@@ -980,148 +972,148 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("CustomerId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("AddressIsVisible")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Amenities")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("CategoryId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("DeniedDescription")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtEnd")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtStart")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasColumnType("varchar(200)");
 
                     b.Property<bool>("EmailIsVisible")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Images")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDenied")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsGhost")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Latitude")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LkFacebook")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LkGooglePlus")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LkInstagram")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LkLinkedin")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LkTwitter")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LkYoutube")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Logo")
                         .HasColumnType("varchar(200)");
 
                     b.Property<bool>("LogoIsVisible")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Longitude")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("NeighborhoodId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("PaymentMethods")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("varchar(200)");
 
                     b.Property<string>("PhoneNumber2")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("PhoneNumberIsVisible")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("PhoneNumberIsVisible2")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<Guid?>("SalePlanId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Site")
                         .HasColumnType("varchar(200)");
 
                     b.Property<bool>("SiteIsVisible")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Specialties")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Street")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Timetable")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserSiteId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("VideoLink")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Whats")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("WhatsIsVisible")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.HasKey("CustomerId");
 
@@ -1132,34 +1124,34 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("CustomerId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("BannerId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("CustomerId");
 
@@ -1170,34 +1162,34 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("CustomerId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CouponId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("CustomerId");
 
@@ -1208,34 +1200,34 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("CustomerId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("EventId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("CustomerId");
 
@@ -1246,148 +1238,148 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("CustomerGhostId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("AddressIsVisible")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Amenities")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("CategoryId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("DeniedDescription")
                         .HasColumnType("varchar(200)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtEnd")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtStart")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasColumnType("varchar(200)");
 
                     b.Property<bool>("EmailIsVisible")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Images")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDenied")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsGhost")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Latitude")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LkFacebook")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LkGooglePlus")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LkInstagram")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LkLinkedin")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LkTwitter")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LkYoutube")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Logo")
                         .HasColumnType("varchar(200)");
 
                     b.Property<bool>("LogoIsVisible")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Longitude")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("NeighborhoodId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("PaymentMethods")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("varchar(200)");
 
                     b.Property<string>("PhoneNumber2")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("PhoneNumberIsVisible")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("PhoneNumberIsVisible2")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<Guid?>("SalePlanId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Site")
                         .HasColumnType("varchar(200)");
 
                     b.Property<bool>("SiteIsVisible")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Specialties")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Street")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Timetable")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserSiteId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("VideoLink")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Whats")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("WhatsIsVisible")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.HasKey("CustomerGhostId");
 
@@ -1398,40 +1390,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("CustomerId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtEnd")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtStart")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<Guid>("SalePlanId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("CustomerId");
 
@@ -1442,37 +1434,37 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("CustomerId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<Guid>("SocialMediaId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Url")
                         .HasColumnType("varchar(500)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("CustomerId");
 
@@ -1483,40 +1475,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("DepartmentId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("DepartmentId");
 
@@ -1527,40 +1519,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("DoctorsId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("DoctorsId");
 
@@ -1571,40 +1563,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("EducationId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("EducationId");
 
@@ -1615,73 +1607,73 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("EventId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CategoryId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CompraOnline")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("CustomerId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtEnd")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtStart")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasColumnType("varchar(200)");
 
                     b.Property<string>("Imagem")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Latitude")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LkFacebook")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LkGooglePlus")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LkInstagram")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LkLinkedin")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LkTwitter")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LkYoutube")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Longitude")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("varchar(200)");
@@ -1690,25 +1682,25 @@ namespace Uzx.Infra.Data.Migrations
                         .HasColumnType("varchar(500)");
 
                     b.Property<string>("Site")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Street")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Whats")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EventId");
 
@@ -1719,37 +1711,37 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("EventId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<Guid>("SocialMediaId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Url")
                         .HasColumnType("varchar(500)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("EventId");
 
@@ -1760,37 +1752,37 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("FamilyTypeId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("FamilyTypeId");
 
@@ -1801,40 +1793,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("FunctionId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("FunctionId");
 
@@ -1843,448 +1835,112 @@ namespace Uzx.Infra.Data.Migrations
 
             modelBuilder.Entity("Uzx.Domain.Entities.Admin.GroupUsers", b =>
                 {
-                    b.Property<Guid>("GroupUserId")
+                    b.Property<Guid>("IdGroupUser")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("IdClient")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("NmGroupUser")
                         .HasColumnType("varchar(200)");
 
-                    b.Property<Guid>("SystemId")
-                        .HasColumnType("uuid");
-
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("GroupUserId");
+                    b.HasKey("IdGroupUser");
 
                     b.ToTable("GroupUsers");
-
-                    b.HasData(
-                        new
-                        {
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(1973),
-                            IsActive = true,
-                            IsDeleted = false,
-                            Name = "Administradores",
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797")
-                        });
                 });
 
             modelBuilder.Entity("Uzx.Domain.Entities.Admin.GroupUsersMenus", b =>
                 {
-                    b.Property<Guid>("GroupUserMenuId")
+                    b.Property<Guid>("IdGroupUser")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("C")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("D")
-                        .HasColumnType("boolean");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
-                    b.Property<Guid>("GroupUserId")
-                        .HasColumnType("uuid");
+                    b.Property<Guid>("IdMenu")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdModule")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<Guid>("MenuId")
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("R")
-                        .HasColumnType("boolean");
-
-                    b.Property<Guid>("SystemId")
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("U")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("GroupUserMenuId");
+                    b.HasKey("IdGroupUser");
 
                     b.ToTable("GroupUsersMenus");
-
-                    b.HasData(
-                        new
-                        {
-                            GroupUserMenuId = new Guid("d52b158c-d06b-4cab-abde-1a5e7c4c57fe"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(900),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("948b8ce1-be96-4729-b1c1-a7d8f74e0236"),
-                            R = true,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            U = true
-                        },
-                        new
-                        {
-                            GroupUserMenuId = new Guid("3f81fdd5-d08e-4026-a2c1-92f1477d0280"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(1214),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("20a10e30-08a2-4c71-b1eb-b281a3b99bac"),
-                            R = true,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            U = true
-                        },
-                        new
-                        {
-                            GroupUserMenuId = new Guid("87c6369e-290c-4e0c-ae8e-e2d728027a61"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(1254),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("c4c53975-3c5e-4c5e-bfd2-3e8a6d990e03"),
-                            R = true,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            U = true
-                        },
-                        new
-                        {
-                            GroupUserMenuId = new Guid("77b2b968-d4f8-4d4a-b9f1-f45005a78e99"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(1275),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("00a8e207-65f3-486f-8708-90f5d3956953"),
-                            R = true,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            U = true
-                        },
-                        new
-                        {
-                            GroupUserMenuId = new Guid("9fbb59f4-82fb-4348-af0e-d8fbd3aa052d"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(1294),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("611f01f6-fe4b-4f3c-bd1d-eb2be3947b47"),
-                            R = true,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            U = true
-                        },
-                        new
-                        {
-                            GroupUserMenuId = new Guid("33726431-3d7f-4160-a861-078763016a96"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(1323),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("ec77004f-b488-45e4-98d8-ea9f552fd28d"),
-                            R = true,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            U = true
-                        },
-                        new
-                        {
-                            GroupUserMenuId = new Guid("872ce512-bc2c-49bd-91f8-0714ff7a724d"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(1342),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("f13924bb-19cd-4681-9d06-e36b01da0b84"),
-                            R = true,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            U = true
-                        },
-                        new
-                        {
-                            GroupUserMenuId = new Guid("3259579d-c21b-4cc7-8db7-7985b180e586"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(1361),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("82e964a7-93eb-40bc-a9c3-bf00337c0ed5"),
-                            R = true,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            U = true
-                        },
-                        new
-                        {
-                            GroupUserMenuId = new Guid("419ceddc-bf71-40e7-b5a7-4936e33afec0"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(1426),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("a763a32e-7401-46fe-98a1-dd4f91be3264"),
-                            R = true,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            U = true
-                        },
-                        new
-                        {
-                            GroupUserMenuId = new Guid("a0f7550e-b4a5-420f-bcf0-8c3b059c8138"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(1452),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("6bf447b3-7036-437c-b87b-ddca13b6b59d"),
-                            R = true,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            U = true
-                        },
-                        new
-                        {
-                            GroupUserMenuId = new Guid("f2e4aa66-aa94-4ecc-9505-a10ed60a5727"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(1471),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("cf0e023a-8eb6-4526-92b2-0b510c89ee8b"),
-                            R = true,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            U = true
-                        },
-                        new
-                        {
-                            GroupUserMenuId = new Guid("0fcd4a38-cef7-4662-9b9e-b0ccc66d9dd3"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(1490),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("69f4ce23-b5b3-4b46-9c12-adb1e193e266"),
-                            R = true,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            U = true
-                        },
-                        new
-                        {
-                            GroupUserMenuId = new Guid("bbf4ade3-1ad9-4b1a-97c5-0187351d5a64"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(1509),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("7b9b488e-f765-4e44-b751-5cea3879731d"),
-                            R = true,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            U = true
-                        },
-                        new
-                        {
-                            GroupUserMenuId = new Guid("2b807475-f2b2-4011-9292-f75d9934aa76"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(1530),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("ca491f37-ffae-434c-b8ce-96a4e8ae347d"),
-                            R = true,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            U = true
-                        },
-                        new
-                        {
-                            GroupUserMenuId = new Guid("5ae25220-224c-4238-87ff-efe177c90a4e"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(1549),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("3ebd60a4-cfc8-4411-adf1-9dd3763a2623"),
-                            R = true,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            U = true
-                        },
-                        new
-                        {
-                            GroupUserMenuId = new Guid("e938a94d-75e0-41de-b7c5-058ddc6d229d"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(1568),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("00cbbba1-d85b-4aae-9924-cfe7d721f63a"),
-                            R = true,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            U = true
-                        },
-                        new
-                        {
-                            GroupUserMenuId = new Guid("a2721ea3-cdf7-4c58-af40-eb54a075c217"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(1586),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("3b6fdc4a-6ff5-4813-b5fd-4472e518573d"),
-                            R = true,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            U = true
-                        },
-                        new
-                        {
-                            GroupUserMenuId = new Guid("d5694073-e0d7-4f0e-91ce-42a95e6630fb"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(1607),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("a5a1b383-8613-4712-8581-2ae6b9cb5ce5"),
-                            R = true,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            U = true
-                        },
-                        new
-                        {
-                            GroupUserMenuId = new Guid("f2bbb67b-3311-497f-bf23-be1cd017a300"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(1625),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("49dfda06-f13a-4b6e-9471-1ea88522bc10"),
-                            R = true,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            U = true
-                        },
-                        new
-                        {
-                            GroupUserMenuId = new Guid("05777874-c2e3-45dc-84cd-c761a546fb36"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(1644),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("39fdc467-e662-47ff-8551-476cfd11b761"),
-                            R = true,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            U = true
-                        },
-                        new
-                        {
-                            GroupUserMenuId = new Guid("79c17a3f-fff8-4bb3-8938-ea92223b98da"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(1663),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("c273949a-ba96-4390-9399-6eca45dc898b"),
-                            R = true,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            U = true
-                        },
-                        new
-                        {
-                            GroupUserMenuId = new Guid("e5fd6f5e-7c46-4bd1-bfdf-5d84d3dbe3a9"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(1684),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("0b31c975-32dd-4c83-a6e1-ddd704464e3f"),
-                            R = true,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            U = true
-                        });
                 });
 
             modelBuilder.Entity("Uzx.Domain.Entities.Admin.Higher", b =>
                 {
                     b.Property<Guid>("HigherId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("HigherId");
 
@@ -2295,40 +1951,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("HospitalId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("HospitalId");
 
@@ -2339,37 +1995,37 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("KinshipId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("KinshipId");
 
@@ -2378,609 +2034,349 @@ namespace Uzx.Infra.Data.Migrations
 
             modelBuilder.Entity("Uzx.Domain.Entities.Admin.Languages", b =>
                 {
-                    b.Property<Guid>("LanguageId")
+                    b.Property<Guid>("IdLanguage")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Alt")
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("FileName")
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("NmLanguage")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("LanguageId");
+                    b.HasKey("IdLanguage");
 
                     b.ToTable("Languages");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            LanguageId = new Guid("4975da6c-015b-474c-bf19-d53223445bf1"),
-                            Alt = "Idioma do país Brasil",
-                            Country = "Brasil",
-                            Description = "Idioma em Portugues Brasileiro",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 944, DateTimeKind.Local).AddTicks(9190),
-                            FileName = "ptbr.js",
-                            Image = "png",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Name = "Portugues",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            LanguageId = new Guid("880f18ef-8b0b-4387-99b3-939c42cef9a1"),
-                            Alt = "Idioma do país EUA",
-                            Country = "EUA",
-                            Description = "Idioma em Inglês Norte Americano",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(1075),
-                            FileName = "us.js",
-                            Image = "png",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Name = "Inglês",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            LanguageId = new Guid("bfe1cde1-e511-4eb5-8036-c077a3477825"),
-                            Alt = "Idioma do país Espanha.",
-                            Country = "Espanha",
-                            Description = "Idioma em Espanhol da Espanha.",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(1206),
-                            FileName = "es.js",
-                            Image = "png",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Name = "Espanhol",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        });
+            modelBuilder.Entity("Uzx.Domain.Entities.Admin.LanguagesTraductions", b =>
+                {
+                    b.Property<Guid>("IdLanguage")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DtDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DtInsert")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DtLastUpdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("IdTraduction")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("UserIdDeleted")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserIdInsert")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserIdUpdate")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("IdLanguage");
+
+                    b.ToTable("LanguagesTraductions");
                 });
 
             modelBuilder.Entity("Uzx.Domain.Entities.Admin.MaritalStatus", b =>
                 {
-                    b.Property<Guid>("MaritalStatusId")
+                    b.Property<Guid>("IdMaritalStatus")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("MaritalStatusId");
+                    b.HasKey("IdMaritalStatus");
 
                     b.ToTable("MaritalStatus");
                 });
 
             modelBuilder.Entity("Uzx.Domain.Entities.Admin.Menus", b =>
                 {
-                    b.Property<Guid>("MenuId")
+                    b.Property<Guid>("IdMenu")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Alt")
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("Icone")
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
-                    b.Property<string>("Link")
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<Guid>("MenuIdPai")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("MenusTypeId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<string>("Target")
+                    b.Property<string>("NmMenu")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("MenuId");
+                    b.HasKey("IdMenu");
 
                     b.ToTable("Menus");
-
-                    b.HasData(
-                        new
-                        {
-                            MenuId = new Guid("948b8ce1-be96-4729-b1c1-a7d8f74e0236"),
-                            Alt = "Menu de Cadastros",
-                            Description = "Menu para realizar diversos cadastros",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(4254),
-                            Icone = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Link = "",
-                            MenuIdPai = new Guid("00000000-0000-0000-0000-000000000000"),
-                            MenusTypeId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Name = "Cadastros",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            MenuId = new Guid("20a10e30-08a2-4c71-b1eb-b281a3b99bac"),
-                            Alt = "Cadastro de Operadoras",
-                            Description = "Realiza o cadastro de Operadoras",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(7124),
-                            Icone = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Link = "",
-                            MenuIdPai = new Guid("948b8ce1-be96-4729-b1c1-a7d8f74e0236"),
-                            MenusTypeId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Name = "Operadoras",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            MenuId = new Guid("c4c53975-3c5e-4c5e-bfd2-3e8a6d990e03"),
-                            Alt = "Listagem de Operadoras",
-                            Description = "Realiza a busca de Operadoras",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(7231),
-                            Icone = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Link = "companyoperators/list",
-                            MenuIdPai = new Guid("20a10e30-08a2-4c71-b1eb-b281a3b99bac"),
-                            MenusTypeId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Name = "Listar",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            MenuId = new Guid("00a8e207-65f3-486f-8708-90f5d3956953"),
-                            Alt = "Cadastro de Operadoras",
-                            Description = "Realiza o cadastro de Operadoras",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(7274),
-                            Icone = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Link = "companyoperators/details",
-                            MenuIdPai = new Guid("20a10e30-08a2-4c71-b1eb-b281a3b99bac"),
-                            MenusTypeId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Name = "Cadastrar",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            MenuId = new Guid("611f01f6-fe4b-4f3c-bd1d-eb2be3947b47"),
-                            Alt = "Cadastro de Usuarios",
-                            Description = "Realiza o cadastro de Usuarios",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(7482),
-                            Icone = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Link = "",
-                            MenuIdPai = new Guid("948b8ce1-be96-4729-b1c1-a7d8f74e0236"),
-                            MenusTypeId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Name = "Usuarios",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            MenuId = new Guid("ec77004f-b488-45e4-98d8-ea9f552fd28d"),
-                            Alt = "Listagem de Usuarios",
-                            Description = "Realiza a busca de Usuarios",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(7605),
-                            Icone = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Link = "users/list",
-                            MenuIdPai = new Guid("611f01f6-fe4b-4f3c-bd1d-eb2be3947b47"),
-                            MenusTypeId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Name = "Listar",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            MenuId = new Guid("f13924bb-19cd-4681-9d06-e36b01da0b84"),
-                            Alt = "Cadastro de Usuarios",
-                            Description = "Realiza o cadastro de Usuarios",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(7795),
-                            Icone = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Link = "users/details",
-                            MenuIdPai = new Guid("611f01f6-fe4b-4f3c-bd1d-eb2be3947b47"),
-                            MenusTypeId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Name = "Cadastrar",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            MenuId = new Guid("82e964a7-93eb-40bc-a9c3-bf00337c0ed5"),
-                            Alt = "Cadastro de Menus",
-                            Description = "Realiza o cadastro de Menus",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(7842),
-                            Icone = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Link = "",
-                            MenuIdPai = new Guid("948b8ce1-be96-4729-b1c1-a7d8f74e0236"),
-                            MenusTypeId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Name = "Menus",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            MenuId = new Guid("a763a32e-7401-46fe-98a1-dd4f91be3264"),
-                            Alt = "Listagem de Menus",
-                            Description = "Realiza a busca de Menus",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(7885),
-                            Icone = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Link = "menus/list",
-                            MenuIdPai = new Guid("82e964a7-93eb-40bc-a9c3-bf00337c0ed5"),
-                            MenusTypeId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Name = "Listar",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            MenuId = new Guid("6bf447b3-7036-437c-b87b-ddca13b6b59d"),
-                            Alt = "Cadastro de Menus",
-                            Description = "Realiza o cadastro de Menus",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(7932),
-                            Icone = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Link = "menus/details",
-                            MenuIdPai = new Guid("82e964a7-93eb-40bc-a9c3-bf00337c0ed5"),
-                            MenusTypeId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Name = "Cadastrar",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            MenuId = new Guid("cf0e023a-8eb6-4526-92b2-0b510c89ee8b"),
-                            Alt = "Cadastro de Clientes",
-                            Description = "Realiza o cadastro de Clientes",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(7971),
-                            Icone = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Link = "",
-                            MenuIdPai = new Guid("948b8ce1-be96-4729-b1c1-a7d8f74e0236"),
-                            MenusTypeId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Name = "Clientes",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            MenuId = new Guid("69f4ce23-b5b3-4b46-9c12-adb1e193e266"),
-                            Alt = "Listagem de Clientes",
-                            Description = "Realiza a busca de Clientes",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(8014),
-                            Icone = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Link = "clients/list",
-                            MenuIdPai = new Guid("cf0e023a-8eb6-4526-92b2-0b510c89ee8b"),
-                            MenusTypeId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Name = "Listar",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            MenuId = new Guid("7b9b488e-f765-4e44-b751-5cea3879731d"),
-                            Alt = "Cadastro de Clientes",
-                            Description = "Realiza o cadastro de Clientes",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(8095),
-                            Icone = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Link = "clients/details",
-                            MenuIdPai = new Guid("cf0e023a-8eb6-4526-92b2-0b510c89ee8b"),
-                            MenusTypeId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Name = "Cadastrar",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            MenuId = new Guid("ca491f37-ffae-434c-b8ce-96a4e8ae347d"),
-                            Alt = "Cadastro de Idiomas",
-                            Description = "Realiza o cadastro de Idiomas",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(8137),
-                            Icone = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Link = "",
-                            MenuIdPai = new Guid("948b8ce1-be96-4729-b1c1-a7d8f74e0236"),
-                            MenusTypeId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Name = "Idiomas",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            MenuId = new Guid("3ebd60a4-cfc8-4411-adf1-9dd3763a2623"),
-                            Alt = "Listagem de Idiomas",
-                            Description = "Realiza a busca de Idiomas",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(8176),
-                            Icone = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Link = "languages/list",
-                            MenuIdPai = new Guid("ca491f37-ffae-434c-b8ce-96a4e8ae347d"),
-                            MenusTypeId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Name = "Listar",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            MenuId = new Guid("00cbbba1-d85b-4aae-9924-cfe7d721f63a"),
-                            Alt = "Cadastro de Idiomas",
-                            Description = "Realiza o cadastro de Idiomas",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(8215),
-                            Icone = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Link = "languages/details",
-                            MenuIdPai = new Guid("ca491f37-ffae-434c-b8ce-96a4e8ae347d"),
-                            MenusTypeId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Name = "Cadastrar",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            MenuId = new Guid("3b6fdc4a-6ff5-4813-b5fd-4472e518573d"),
-                            Alt = "Cadastro de Sistemas",
-                            Description = "Realiza o cadastro de Sistemas",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(8256),
-                            Icone = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Link = "",
-                            MenuIdPai = new Guid("948b8ce1-be96-4729-b1c1-a7d8f74e0236"),
-                            MenusTypeId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Name = "Sistemas",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            MenuId = new Guid("a5a1b383-8613-4712-8581-2ae6b9cb5ce5"),
-                            Alt = "Listagem de Sistemas",
-                            Description = "Realiza a busca de Sistemas",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(8299),
-                            Icone = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Link = "systems/list",
-                            MenuIdPai = new Guid("3b6fdc4a-6ff5-4813-b5fd-4472e518573d"),
-                            MenusTypeId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Name = "Listar",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            MenuId = new Guid("49dfda06-f13a-4b6e-9471-1ea88522bc10"),
-                            Alt = "Cadastro de Sistemas",
-                            Description = "Realiza o cadastro de Sistemas",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(8373),
-                            Icone = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Link = "systems/details",
-                            MenuIdPai = new Guid("3b6fdc4a-6ff5-4813-b5fd-4472e518573d"),
-                            MenusTypeId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Name = "Cadastrar",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            MenuId = new Guid("39fdc467-e662-47ff-8551-476cfd11b761"),
-                            Alt = "Cadastro de Grupo de Usuarios",
-                            Description = "Realiza o cadastro de Grupo de Usuarios",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(8415),
-                            Icone = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Link = "",
-                            MenuIdPai = new Guid("948b8ce1-be96-4729-b1c1-a7d8f74e0236"),
-                            MenusTypeId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Name = "Grupo de Usuarios",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            MenuId = new Guid("c273949a-ba96-4390-9399-6eca45dc898b"),
-                            Alt = "Listagem de Grupo de Usuarios",
-                            Description = "Realiza a busca de Grupo de Usuarios",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(8454),
-                            Icone = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Link = "groupusers/list",
-                            MenuIdPai = new Guid("39fdc467-e662-47ff-8551-476cfd11b761"),
-                            MenusTypeId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Name = "Listar",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            MenuId = new Guid("0b31c975-32dd-4c83-a6e1-ddd704464e3f"),
-                            Alt = "Cadastro de Grupo de Usuarios",
-                            Description = "Realiza o cadastro de Grupo de Usuarios",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(8494),
-                            Icone = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            Link = "groupusers/details",
-                            MenuIdPai = new Guid("39fdc467-e662-47ff-8551-476cfd11b761"),
-                            MenusTypeId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Name = "Cadastrar",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        });
                 });
 
             modelBuilder.Entity("Uzx.Domain.Entities.Admin.MenusTypes", b =>
                 {
                     b.Property<Guid>("MenusTypeId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("MenusTypeId");
 
                     b.ToTable("MenusType");
                 });
 
+            modelBuilder.Entity("Uzx.Domain.Entities.Admin.Modules", b =>
+                {
+                    b.Property<Guid>("IdModule")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DtDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DtInsert")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DtLastUpdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("NmModule")
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<Guid?>("UserIdDeleted")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserIdInsert")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserIdUpdate")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("IdModule");
+
+                    b.ToTable("Modules");
+                });
+
+            modelBuilder.Entity("Uzx.Domain.Entities.Admin.ModulesLanguages", b =>
+                {
+                    b.Property<Guid>("IdModule")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DtDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DtInsert")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DtLastUpdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("IdLanguage")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("UserIdDeleted")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserIdInsert")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserIdUpdate")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("IdModule");
+
+                    b.ToTable("ModulesLanguages");
+                });
+
+            modelBuilder.Entity("Uzx.Domain.Entities.Admin.ModulesMenus", b =>
+                {
+                    b.Property<Guid>("IdModule")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DtDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DtInsert")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DtLastUpdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("IdMenu")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("UserIdDeleted")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserIdInsert")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserIdUpdate")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("IdModule");
+
+                    b.ToTable("ModulesMenu");
+                });
+
             modelBuilder.Entity("Uzx.Domain.Entities.Admin.Neighborhoods", b =>
                 {
                     b.Property<Guid>("NeighborhoodId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("NeighborhoodId");
 
@@ -2991,40 +2387,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("OfficeId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("OfficeId");
 
@@ -3035,43 +2431,43 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("PaymentMethodId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Icon")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("PaymentMethodId");
 
@@ -3082,46 +2478,46 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("PlanId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Code")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid>("CompanyOperatorId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("PlanId");
 
@@ -3132,40 +2528,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("ProcedureId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ProcedureId");
 
@@ -3176,40 +2572,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("ProviderId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ProviderId");
 
@@ -3220,10 +2616,10 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("ResponsabilityId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Code")
                         .HasColumnType("varchar(200)");
@@ -3232,31 +2628,31 @@ namespace Uzx.Infra.Data.Migrations
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ResponsabilityId");
 
@@ -3267,46 +2663,46 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("SalePlanId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("DurationMounth")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsBanner")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsCoupons")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDestaque")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsEvents")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsGuia")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
@@ -3315,16 +2711,16 @@ namespace Uzx.Infra.Data.Migrations
                         .HasColumnType("varchar(200)");
 
                     b.Property<double>("Price")
-                        .HasColumnType("double precision");
+                        .HasColumnType("float");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("SalePlanId");
 
@@ -3335,40 +2731,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("ShiftId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ShiftId");
 
@@ -3379,40 +2775,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("SocialMediaId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Icon")
                         .HasColumnType("varchar(200)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("SocialMediaId");
 
@@ -3423,40 +2819,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("SpecialityId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("SpecialityId");
 
@@ -3467,40 +2863,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("StateId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Acronym")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid>("CountryId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("StateId");
 
@@ -3511,40 +2907,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("StatusId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("StatusId");
 
@@ -3555,40 +2951,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("SatusSolicitationId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("SatusSolicitationId");
 
@@ -3599,7 +2995,7 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("SystemId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Alt")
                         .HasColumnType("varchar(200)");
@@ -3608,545 +3004,352 @@ namespace Uzx.Infra.Data.Migrations
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Image")
                         .HasColumnType("varchar(200)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsAdmin")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("SystemId");
 
                     b.ToTable("Systems");
-
-                    b.HasData(
-                        new
-                        {
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            Alt = "Sistema Administrativo",
-                            Description = "Sistema Administrativo",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 944, DateTimeKind.Local).AddTicks(4839),
-                            Image = "",
-                            IsActive = true,
-                            IsAdmin = false,
-                            IsDeleted = false,
-                            Name = "Administrativo",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        });
                 });
 
             modelBuilder.Entity("Uzx.Domain.Entities.Admin.SystemsLanguages", b =>
                 {
                     b.Property<Guid>("SystemLanguageId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDefault")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<Guid>("LanguageId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("SystemId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("SystemLanguageId");
 
                     b.ToTable("SystemsLanguages");
-
-                    b.HasData(
-                        new
-                        {
-                            SystemLanguageId = new Guid("64441273-3da4-4350-82c9-e5e499cef21b"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(780),
-                            IsActive = true,
-                            IsDefault = true,
-                            IsDeleted = false,
-                            LanguageId = new Guid("4975da6c-015b-474c-bf19-d53223445bf1"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797")
-                        },
-                        new
-                        {
-                            SystemLanguageId = new Guid("e3a487dc-f222-40ff-aed2-b53845ab51d8"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(1175),
-                            IsActive = true,
-                            IsDefault = true,
-                            IsDeleted = false,
-                            LanguageId = new Guid("880f18ef-8b0b-4387-99b3-939c42cef9a1"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797")
-                        },
-                        new
-                        {
-                            SystemLanguageId = new Guid("afb949b8-88f3-46c8-979f-058eb14d711e"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(1231),
-                            IsActive = true,
-                            IsDefault = true,
-                            IsDeleted = false,
-                            LanguageId = new Guid("bfe1cde1-e511-4eb5-8036-c077a3477825"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797")
-                        });
                 });
 
             modelBuilder.Entity("Uzx.Domain.Entities.Admin.SystemsMenus", b =>
                 {
                     b.Property<Guid>("SystemMenuId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<Guid>("MenuId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("SystemId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("SystemMenuId");
 
                     b.ToTable("SystemsMenus");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            SystemMenuId = new Guid("1ec55c6c-8d26-4dd6-b0cc-627b1b6c029b"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(6287),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("948b8ce1-be96-4729-b1c1-a7d8f74e0236"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            SystemMenuId = new Guid("34c6b78f-6cf8-4b23-9cbb-bb68927e0df3"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(7195),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("20a10e30-08a2-4c71-b1eb-b281a3b99bac"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            SystemMenuId = new Guid("efb38cc9-fa3e-4862-a4fe-a844b19d55c8"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(7252),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("c4c53975-3c5e-4c5e-bfd2-3e8a6d990e03"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            SystemMenuId = new Guid("8e9b28fe-ac8d-49e6-96b3-afb07ff2250b"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(7292),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("00a8e207-65f3-486f-8708-90f5d3956953"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            SystemMenuId = new Guid("167d5ffd-e670-468e-b0a2-9a5cbec0aa88"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(7508),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("611f01f6-fe4b-4f3c-bd1d-eb2be3947b47"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            SystemMenuId = new Guid("fcd1fb08-1bf3-4295-9ebb-6362bf6af81d"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(7624),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("ec77004f-b488-45e4-98d8-ea9f552fd28d"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            SystemMenuId = new Guid("4445ec10-994b-4c8c-b333-e91cb84dbe6d"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(7820),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("f13924bb-19cd-4681-9d06-e36b01da0b84"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            SystemMenuId = new Guid("bddc05c0-dee5-4950-bfb4-c11b9c6dfe3f"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(7861),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("82e964a7-93eb-40bc-a9c3-bf00337c0ed5"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            SystemMenuId = new Guid("b59c0462-be0c-408e-94e9-0f8cd0e0aec7"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(7906),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("a763a32e-7401-46fe-98a1-dd4f91be3264"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            SystemMenuId = new Guid("9c2ecdfb-4879-47d9-9439-eb1f3362dbff"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(7950),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("6bf447b3-7036-437c-b87b-ddca13b6b59d"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            SystemMenuId = new Guid("ca9d13a3-2d23-4daa-ac65-de9eff32508c"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(7994),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("cf0e023a-8eb6-4526-92b2-0b510c89ee8b"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            SystemMenuId = new Guid("676e00ae-c6fc-471d-a7cb-abe037023e68"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(8032),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("69f4ce23-b5b3-4b46-9c12-adb1e193e266"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            SystemMenuId = new Guid("c2055c52-427a-4f1f-aa19-28e55d70fa0c"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(8114),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("7b9b488e-f765-4e44-b751-5cea3879731d"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            SystemMenuId = new Guid("3840ec48-d2a3-4c41-bcc6-00a665d34b29"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(8155),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("ca491f37-ffae-434c-b8ce-96a4e8ae347d"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            SystemMenuId = new Guid("6c8641b8-e021-4bad-a441-542950e42885"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(8194),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("3ebd60a4-cfc8-4411-adf1-9dd3763a2623"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            SystemMenuId = new Guid("5e2ff568-0ddb-4782-9caf-f11b0116997d"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(8233),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("00cbbba1-d85b-4aae-9924-cfe7d721f63a"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            SystemMenuId = new Guid("67697efa-e28b-480c-b296-72a0eb3a9d8e"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(8275),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("3b6fdc4a-6ff5-4813-b5fd-4472e518573d"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            SystemMenuId = new Guid("60c01ef2-f549-486a-a056-eb060578738f"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(8316),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("a5a1b383-8613-4712-8581-2ae6b9cb5ce5"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            SystemMenuId = new Guid("ba0e949f-5db1-4427-a152-194f1ff0b405"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(8394),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("49dfda06-f13a-4b6e-9471-1ea88522bc10"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            SystemMenuId = new Guid("2ad75e60-4447-4a9b-8e68-7b2d5b010397"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(8432),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("39fdc467-e662-47ff-8551-476cfd11b761"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            SystemMenuId = new Guid("b98456ee-99b9-42c3-9c79-815a5c3e3f85"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(8472),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("c273949a-ba96-4390-9399-6eca45dc898b"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            SystemMenuId = new Guid("87adc830-bc1f-40eb-90fd-abab684fecaa"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 945, DateTimeKind.Local).AddTicks(8511),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("0b31c975-32dd-4c83-a6e1-ddd704464e3f"),
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        });
+            modelBuilder.Entity("Uzx.Domain.Entities.Admin.Tenants", b =>
+                {
+                    b.Property<Guid>("IdTenant")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DtDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DtInsert")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DtLastUpdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("NmTenant")
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<Guid?>("UserIdDeleted")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserIdInsert")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserIdUpdate")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("IdTenant");
+
+                    b.ToTable("Tenants");
                 });
 
             modelBuilder.Entity("Uzx.Domain.Entities.Admin.Timetable", b =>
                 {
                     b.Property<Guid>("TimetableId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("AllDays")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("AllDaysIn")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AllDaysOut")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CustomerId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("Friday")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("FridayIn")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FridayOut")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("Monday")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("MondayIn")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MondayOut")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Saturday")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("SaturdayIn")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SaturdayOut")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sunday")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SundayIn")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SundayOut")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Thursday")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("ThursdayIn")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ThursdayOut")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Tuesday")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("TuesdayIn")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TuesdayOut")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("Wednesday")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("WednesdayIn")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WednesdayOut")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("hrs24")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.HasKey("TimetableId");
 
                     b.ToTable("Timetable");
                 });
 
+            modelBuilder.Entity("Uzx.Domain.Entities.Admin.Traductions", b =>
+                {
+                    b.Property<Guid>("IdTraduction")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DtDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DtInsert")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DtLastUpdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("NmTraduction")
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<Guid?>("UserIdDeleted")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserIdInsert")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserIdUpdate")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("IdTraduction");
+
+                    b.ToTable("Traductions");
+                });
+
             modelBuilder.Entity("Uzx.Domain.Entities.Admin.TransportLines", b =>
                 {
                     b.Property<Guid>("TransportLineId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("TransportLineId");
 
@@ -4157,40 +3360,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("TransportId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("TransportId");
 
@@ -4201,40 +3404,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("TreatmentId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("TreatmentId");
 
@@ -4245,40 +3448,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("TypeProviderId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("TypeProviderId");
 
@@ -4289,40 +3492,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("TypeSolicitationId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("TypeSolicitationId");
 
@@ -4333,40 +3536,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("TypeTransportId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("TypeTransportId");
 
@@ -4377,40 +3580,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("UnionId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("UnionId");
 
@@ -4419,554 +3622,233 @@ namespace Uzx.Infra.Data.Migrations
 
             modelBuilder.Entity("Uzx.Domain.Entities.Admin.Users", b =>
                 {
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid>("IdUser")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("CellPhone")
-                        .HasColumnType("varchar(14)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Cpf")
-                        .HasColumnType("varchar(13)");
-
-                    b.Property<DateTime?>("DtBirth")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("Gender")
-                        .HasColumnType("varchar(200)");
+                    b.Property<Guid>("IdClient")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Icone")
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<string>("Nationality")
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("varchar(14)");
-
-                    b.Property<string>("Rg")
-                        .HasColumnType("varchar(12)");
-
-                    b.Property<string>("Surname")
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = new Guid("1bac0401-e200-451b-a51f-b5bfbf824f37"),
-                            ClientId = new Guid("ff65068a-d0a9-4445-af16-1ec152e5b37a"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(3869),
-                            IsActive = true,
-                            IsDeleted = false,
-                            Name = "Administrador",
-                            Surname = "Master",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        });
-                });
-
-            modelBuilder.Entity("Uzx.Domain.Entities.Admin.UsersAccess", b =>
-                {
-                    b.Property<Guid>("UserAccessId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime?>("DTVerify")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                    b.Property<Guid>("IdGroupUser")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
-                    b.Property<bool>("IsVerify")
-                        .HasColumnType("boolean");
+                    b.Property<string>("NmEmail")
+                        .HasColumnType("varchar(200)");
 
-                    b.Property<string>("Login")
+                    b.Property<string>("NmLogin")
                         .HasColumnType("varchar(200)");
 
                     b.Property<string>("Password")
                         .HasColumnType("varchar(200)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("UserAccessId");
+                    b.HasKey("IdUser");
 
-                    b.ToTable("UsersAccess");
-
-                    b.HasData(
-                        new
-                        {
-                            UserAccessId = new Guid("cca99886-5516-4992-bede-fd3373686694"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(5321),
-                            IsActive = true,
-                            IsDeleted = false,
-                            IsVerify = true,
-                            Login = "user@uzenix.com",
-                            Password = "AO5+45YXX6IBTW3FF/sVqz7BxjClYY3xE0qkWef8lLgJOnM7Rk6cUiF3t8v5huFcWw==",
-                            UserId = new Guid("1bac0401-e200-451b-a51f-b5bfbf824f37")
-                        });
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Uzx.Domain.Entities.Admin.UsersPermissions", b =>
                 {
-                    b.Property<Guid>("UserPermissionId")
+                    b.Property<Guid>("IdUser")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("C")
+                        .HasColumnType("bit");
 
                     b.Property<Guid?>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("D")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
-                    b.Property<Guid>("GroupUserId")
-                        .HasColumnType("uuid");
+                    b.Property<Guid>("IdMenu")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
-                    b.Property<Guid>("SystemId")
-                        .HasColumnType("uuid");
+                    b.Property<bool>("R")
+                        .HasColumnType("bit");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
+                    b.Property<bool>("U")
+                        .HasColumnType("bit");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("UserPermissionId");
+                    b.HasKey("IdUser");
 
                     b.ToTable("UsersPermissions");
-
-                    b.HasData(
-                        new
-                        {
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1"),
-                            ClientId = new Guid("ff65068a-d0a9-4445-af16-1ec152e5b37a"),
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(7085),
-                            GroupUserId = new Guid("9c49cf36-cc3f-4a14-bc46-38f884348efc"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            SystemId = new Guid("9fdd6efa-2650-474d-9b52-dffd48ac7797"),
-                            UserId = new Guid("1bac0401-e200-451b-a51f-b5bfbf824f37")
-                        });
                 });
 
             modelBuilder.Entity("Uzx.Domain.Entities.Admin.UsersPermissionsMenus", b =>
                 {
                     b.Property<Guid>("UserPermissionMenuId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("C")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("D")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<Guid>("MenuId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("R")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("U")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("UserPermissionId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("UserPermissionMenuId");
 
                     b.ToTable("UsersPermissionsMenus");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            UserPermissionMenuId = new Guid("84936947-7be6-4ac9-8750-53ab21825ea6"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(8908),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("948b8ce1-be96-4729-b1c1-a7d8f74e0236"),
-                            R = true,
-                            U = true,
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1")
-                        },
-                        new
-                        {
-                            UserPermissionMenuId = new Guid("2ab904cc-29a9-4c48-b47d-f8ceb2d0c8c3"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(9115),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("20a10e30-08a2-4c71-b1eb-b281a3b99bac"),
-                            R = true,
-                            U = true,
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1")
-                        },
-                        new
-                        {
-                            UserPermissionMenuId = new Guid("2eb75331-79e7-4ba0-b8b9-06d9d39e8754"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(9148),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("c4c53975-3c5e-4c5e-bfd2-3e8a6d990e03"),
-                            R = true,
-                            U = true,
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1")
-                        },
-                        new
-                        {
-                            UserPermissionMenuId = new Guid("00a5ee85-8783-4cb5-929d-0b1b6a55dde2"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(9177),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("00a8e207-65f3-486f-8708-90f5d3956953"),
-                            R = true,
-                            U = true,
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1")
-                        },
-                        new
-                        {
-                            UserPermissionMenuId = new Guid("6a8c35d2-3fd6-4b49-9b8a-7669f95b96ce"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(9198),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("611f01f6-fe4b-4f3c-bd1d-eb2be3947b47"),
-                            R = true,
-                            U = true,
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1")
-                        },
-                        new
-                        {
-                            UserPermissionMenuId = new Guid("42068787-d7f6-4cc0-9885-8b5f66835153"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(9221),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("ec77004f-b488-45e4-98d8-ea9f552fd28d"),
-                            R = true,
-                            U = true,
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1")
-                        },
-                        new
-                        {
-                            UserPermissionMenuId = new Guid("923e6f42-9442-4665-a2a6-2b829eb39d26"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(9243),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("f13924bb-19cd-4681-9d06-e36b01da0b84"),
-                            R = true,
-                            U = true,
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1")
-                        },
-                        new
-                        {
-                            UserPermissionMenuId = new Guid("1a66038a-032f-4eec-8a69-a6b8a731c5f4"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(9263),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("82e964a7-93eb-40bc-a9c3-bf00337c0ed5"),
-                            R = true,
-                            U = true,
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1")
-                        },
-                        new
-                        {
-                            UserPermissionMenuId = new Guid("a6fa6f5d-62d2-44a6-8c7c-a0014661a0be"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(9283),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("a763a32e-7401-46fe-98a1-dd4f91be3264"),
-                            R = true,
-                            U = true,
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1")
-                        },
-                        new
-                        {
-                            UserPermissionMenuId = new Guid("d9dc4c33-09f8-4a55-8c58-057c96d7e93f"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(9304),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("6bf447b3-7036-437c-b87b-ddca13b6b59d"),
-                            R = true,
-                            U = true,
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1")
-                        },
-                        new
-                        {
-                            UserPermissionMenuId = new Guid("65003975-7ef0-464a-a697-f6c0d95fa511"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(9323),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("cf0e023a-8eb6-4526-92b2-0b510c89ee8b"),
-                            R = true,
-                            U = true,
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1")
-                        },
-                        new
-                        {
-                            UserPermissionMenuId = new Guid("17c15e70-3661-41bf-b17c-0cc384a885fe"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(9346),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("69f4ce23-b5b3-4b46-9c12-adb1e193e266"),
-                            R = true,
-                            U = true,
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1")
-                        },
-                        new
-                        {
-                            UserPermissionMenuId = new Guid("9e65d7d4-9fb4-4f38-8158-cc8d9b47ffe3"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(9365),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("7b9b488e-f765-4e44-b751-5cea3879731d"),
-                            R = true,
-                            U = true,
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1")
-                        },
-                        new
-                        {
-                            UserPermissionMenuId = new Guid("c7670340-fa93-4adc-b405-7aab462fc4c9"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(9429),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("ca491f37-ffae-434c-b8ce-96a4e8ae347d"),
-                            R = true,
-                            U = true,
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1")
-                        },
-                        new
-                        {
-                            UserPermissionMenuId = new Guid("3b3a1daf-fbdf-467b-80c7-44eb12e66b1b"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(9453),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("3ebd60a4-cfc8-4411-adf1-9dd3763a2623"),
-                            R = true,
-                            U = true,
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1")
-                        },
-                        new
-                        {
-                            UserPermissionMenuId = new Guid("fa68d621-dd27-414c-9a07-228ffe87773a"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(9472),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("00cbbba1-d85b-4aae-9924-cfe7d721f63a"),
-                            R = true,
-                            U = true,
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1")
-                        },
-                        new
-                        {
-                            UserPermissionMenuId = new Guid("1b6f89e7-6347-44fc-adff-bb28c83b081a"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(9492),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("3b6fdc4a-6ff5-4813-b5fd-4472e518573d"),
-                            R = true,
-                            U = true,
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1")
-                        },
-                        new
-                        {
-                            UserPermissionMenuId = new Guid("4e1b9928-aa4c-47e3-a772-4a545880b8a3"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(9513),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("a5a1b383-8613-4712-8581-2ae6b9cb5ce5"),
-                            R = true,
-                            U = true,
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1")
-                        },
-                        new
-                        {
-                            UserPermissionMenuId = new Guid("7bbecc0a-99c1-4463-9bdb-607601b38c99"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(9533),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("49dfda06-f13a-4b6e-9471-1ea88522bc10"),
-                            R = true,
-                            U = true,
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1")
-                        },
-                        new
-                        {
-                            UserPermissionMenuId = new Guid("31727568-0e5c-4d10-aa00-cb4b0fc7cd32"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(9555),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("39fdc467-e662-47ff-8551-476cfd11b761"),
-                            R = true,
-                            U = true,
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1")
-                        },
-                        new
-                        {
-                            UserPermissionMenuId = new Guid("3bc6867b-7071-4e28-a225-cb8ac13427c8"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(9575),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("c273949a-ba96-4390-9399-6eca45dc898b"),
-                            R = true,
-                            U = true,
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1")
-                        },
-                        new
-                        {
-                            UserPermissionMenuId = new Guid("5736600e-cfa4-42e2-aab7-300edf9147ef"),
-                            C = true,
-                            D = true,
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(9595),
-                            IsActive = true,
-                            IsDeleted = false,
-                            MenuId = new Guid("0b31c975-32dd-4c83-a6e1-ddd704464e3f"),
-                            R = true,
-                            U = true,
-                            UserPermissionId = new Guid("1b9da5b9-633e-47ca-8a20-262fdbb5b1e1")
-                        });
+            modelBuilder.Entity("Uzx.Domain.Entities.Admin.UsersProfile", b =>
+                {
+                    b.Property<Guid>("IdUserProfile")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DtBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DtDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DtInsert")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DtLastUpdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("IdMaritalStatus")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdUser")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("NbCPF")
+                        .HasColumnType("varchar(14)");
+
+                    b.Property<string>("NbPis")
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("NbRG")
+                        .HasColumnType("varchar(12)");
+
+                    b.Property<string>("NmFather")
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("NmMother")
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("NmSurname")
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("NmUser")
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<Guid?>("UserIdDeleted")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserIdInsert")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserIdUpdate")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("IdUserProfile");
+
+                    b.ToTable("UsersAccess");
                 });
 
             modelBuilder.Entity("Uzx.Domain.Entities.Admin.UsersProperties", b =>
                 {
                     b.Property<Guid>("UserPropertieId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CellPhone")
                         .HasColumnType("varchar(14)");
@@ -4975,25 +3857,25 @@ namespace Uzx.Infra.Data.Migrations
                         .HasColumnType("varchar(13)");
 
                     b.Property<DateTime?>("DtBirth")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Gender")
                         .HasColumnType("varchar(200)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
@@ -5011,19 +3893,19 @@ namespace Uzx.Infra.Data.Migrations
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("TypeUserTypeId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("UserPropertieId");
 
@@ -5036,40 +3918,40 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("UserSiteId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Whatsapp")
                         .HasColumnType("varchar(20)");
@@ -5083,37 +3965,37 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("UserStatusId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("UserStatusId");
 
@@ -5124,37 +4006,37 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("UserTokenId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Token")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("UserTokenId");
 
@@ -5165,53 +4047,41 @@ namespace Uzx.Infra.Data.Migrations
                 {
                     b.Property<Guid>("UserTypeId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DtDeleted")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInsert")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DtLastUpdate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
                     b.Property<Guid?>("UserIdDeleted")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdInsert")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UserIdUpdate")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("UserTypeId");
 
                     b.ToTable("UsersTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            UserTypeId = new Guid("e0fa79fb-aac5-477b-9f49-602562b9856c"),
-                            Description = "usuário administrativo",
-                            DtInsert = new DateTime(2021, 10, 2, 1, 1, 38, 946, DateTimeKind.Local).AddTicks(2623),
-                            IsActive = true,
-                            IsDeleted = false,
-                            Name = "Administrativo",
-                            UserIdInsert = new Guid("00000000-0000-0000-0000-000000000000")
-                        });
                 });
 
             modelBuilder.Entity("Uzx.Domain.Entities.Admin.ClientsSystems", b =>

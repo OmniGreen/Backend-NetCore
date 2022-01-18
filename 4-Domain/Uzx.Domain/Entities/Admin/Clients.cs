@@ -12,6 +12,8 @@ namespace Uzx.Domain.Entities.Admin
 
         public Guid ParentId { get; set; }
 
+        public Guid IdTenant { get; set; }
+
         public Guid? AgentId { get; set; }
 
         public string Person { get; set; }

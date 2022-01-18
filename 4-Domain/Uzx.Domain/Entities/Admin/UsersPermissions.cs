@@ -7,12 +7,12 @@ namespace Uzx.Domain.Entities.Admin
 {
     public  class UsersPermissions : BaseEntityNaoVersionadaClient
     {
-        public  Guid UserPermissionId { get; set; }
-        public  Guid UserId { get; set; }
-        public  Guid SystemId { get; set; }        
-        public  Guid GroupUserId { get; set; }
-        // public  IEnumerable<Clients> Clients { get; set; }
-        // public IEnumerable<Systems> Systems { get; set; }
-        // public IEnumerable<GroupUsers> GroupUsers { get; set; }
+        public  Guid IdUser { get; set; }
+        public  Guid IdMenu { get; set; }
+        public  bool C{ get; set; }          
+        public  bool R{ get; set; }         
+        public  bool U{ get; set; }           
+        public  bool D{ get; set; }               
+       
     }
 } 

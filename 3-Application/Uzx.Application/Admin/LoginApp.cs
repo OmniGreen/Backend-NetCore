@@ -22,32 +22,32 @@ namespace Uzx.Application.Admin
             throw new NotImplementedException();
         }
 
-        public Task<LoginTrans> GetDataLogin(Guid UserID)
-        {
-            return loginRepository.GetDataLogin(UserID);
-        }
+        //public Task<LoginTrans> GetDataLogin(Guid UserID)
+        //{
+        //    return loginRepository.GetDataLogin(UserID);
+        //}
 
-        public Task<LoginTrans> GetDataLoginSite(Guid UserID)
-        {
-            return loginRepository.GetDataLoginSite(UserID);
-        }
+        //public Task<LoginTrans> GetDataLoginSite(Guid UserID)
+        //{
+        //    return loginRepository.GetDataLoginSite(UserID);
+        //}
 
-        public Task<LoginTrans> Login(LoginReceiveTrans searchRecord)
-        {
-            return loginRepository.Login(searchRecord);
+        //public Task<LoginTrans> Login(LoginReceiveTrans searchRecord)
+        //{
+        //    return loginRepository.Login(searchRecord);
 
           
-        }
+        //}
 
-        public Task<LoginTokenTrans> LoginToken(LoginTokenTrans searchRecord)
-        {
-            return loginRepository.LoginToken(searchRecord);
-        }
+        //public Task<LoginTokenTrans> LoginToken(LoginTokenTrans searchRecord)
+        //{
+        //    return loginRepository.LoginToken(searchRecord);
+        //}
 
-        public Task<LoginTokenTrans> LoginTokenSite(LoginTokenTrans searchRecord)
-        {
-            return loginRepository.LoginTokenSite(searchRecord);
-        }
+        //public Task<LoginTokenTrans> LoginTokenSite(LoginTokenTrans searchRecord)
+        //{
+        //    return loginRepository.LoginTokenSite(searchRecord);
+        //}
 
         public bool recoverPassword(LoginTrans searchRecord)
         {

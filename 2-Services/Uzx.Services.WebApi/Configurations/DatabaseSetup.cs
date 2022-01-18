@@ -16,11 +16,11 @@ namespace Uzx.Services.Api.Configurations
             // services.AddDbContext<ApplicationDbContext>(options =>
             //     options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
-            // services.AddDbContext<EquinoxContext>(options =>
-            //     options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-
             services.AddDbContext<UzxBaseDbContext>(options =>
-                options.UseNpgsql(configuration.GetConnectionString("UzenixDatabase")));
+                options.UseSqlServer(configuration.GetConnectionString("UzenixDatabase")));
+
+            //services.AddDbContext<UzxBaseDbContext>(options =>
+            //    options.UseNpgsql(configuration.GetConnectionString("UzenixDatabase")));
         }
     }
 }

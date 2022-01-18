@@ -21,9 +21,9 @@ namespace Uzx.Application.Admin
         
         }
 
-        public async Task<List<MenusTrans>> GetAllByUser(UsersPermissionsTrans searchRecord)
-        {
-            return await _menusRepository.GetAllByUser(searchRecord);
-        }
+        //public async Task<List<MenusTrans>> GetAllByUser(UsersPermissionsTrans searchRecord)
+        //{
+        //    return await _menusRepository.GetAllByUser(searchRecord);
+        //}
     }
 }

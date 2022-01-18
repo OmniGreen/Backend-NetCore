@@ -3,7 +3,7 @@ using Uzx.Infra.Data.Interfaces._Base;
 
 namespace Uzx.Infra.Data.Interfaces.Admin
 {
-    public interface IUsersAccessRepository : IBaseRepository<UsersAccess>
+    public interface IUsersAccessRepository : IBaseRepository<UsersProfile>
     {
 
     }

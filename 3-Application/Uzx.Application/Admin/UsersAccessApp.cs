@@ -7,9 +7,9 @@ using Uzx.Infra.Data.Interfaces.Admin;
 
 namespace Uzx.Application.Admin
 {
-    public class UsersAccessApp : BaseApp<UsersAccess, UsersAccessTrans>, IUsersAccessApp
+    public class UsersAccessApp : BaseApp<UsersProfile, UsersAccessTrans>, IUsersAccessApp
     {
-        public UsersAccessApp(IMapper mapper, IUsersAccessRepository baseRepository) 
+        public UsersAccessApp(IMapper mapper, IUsersProfileRepository baseRepository) 
             : base(mapper, baseRepository)
         {
 

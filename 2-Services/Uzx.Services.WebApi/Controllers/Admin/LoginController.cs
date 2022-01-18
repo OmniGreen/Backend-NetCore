@@ -22,51 +22,51 @@ namespace Uzx.Services.WebApi.Controllers.Admin
         }
 
 
-       [HttpPost]
-        public async Task<LoginTokenTrans> Post(LoginTokenTrans searchRecord)
-        {
-            var result = await _loginApp.LoginToken(searchRecord);
+       //[HttpPost]
+       // public async Task<LoginTokenTrans> Post(LoginTokenTrans searchRecord)
+       // {
+       //     var result = await _loginApp.LoginToken(searchRecord);
           
-            return result;
-        }
+       //     return result;
+       // }
 
 
-        [HttpPost("LoginSite")]
-        public async Task<LoginTokenTrans> LoginSite(LoginTokenTrans searchRecord)
-        {
-            var result = await _loginApp.LoginTokenSite(searchRecord);
+       // [HttpPost("LoginSite")]
+       // public async Task<LoginTokenTrans> LoginSite(LoginTokenTrans searchRecord)
+       // {
+       //     var result = await _loginApp.LoginTokenSite(searchRecord);
 
-            return result;
-        }
+       //     return result;
+       // }
 
-        [HttpGet("GetDataLogin")]
+       // [HttpGet("GetDataLogin")]
         
-        public async Task<LoginTrans> GetDataLogin()
-        {
-            ClaimsPrincipal principal = HttpContext.User as ClaimsPrincipal;
+       // public async Task<LoginTrans> GetDataLogin()
+       // {
+       //     ClaimsPrincipal principal = HttpContext.User as ClaimsPrincipal;
 
-            //Guid UserId = new Guid(principal.Claims.Where(c => c.Type == ClaimTypes).Select(c => c.Value).SingleOrDefault());
-            Guid UserId = new Guid(principal.Claims.Where(c => c.Type == "UserId").Single().Value);
+       //     //Guid UserId = new Guid(principal.Claims.Where(c => c.Type == ClaimTypes).Select(c => c.Value).SingleOrDefault());
+       //     Guid UserId = new Guid(principal.Claims.Where(c => c.Type == "UserId").Single().Value);
 
-            var result = await _loginApp.GetDataLogin(UserId);
+       //     var result = await _loginApp.GetDataLogin(UserId);
 
-            return result;
-        }
+       //     return result;
+       // }
 
 
-        [HttpGet("GetDataLoginSite")]
+       // [HttpGet("GetDataLoginSite")]
 
-        public async Task<LoginTrans> GetDataLoginSite()
-        {
-            ClaimsPrincipal principal = HttpContext.User as ClaimsPrincipal;
+       // public async Task<LoginTrans> GetDataLoginSite()
+       // {
+       //     ClaimsPrincipal principal = HttpContext.User as ClaimsPrincipal;
 
-            //Guid UserId = new Guid(principal.Claims.Where(c => c.Type == ClaimTypes).Select(c => c.Value).SingleOrDefault());
-            Guid UserId = new Guid(principal.Claims.Where(c => c.Type == "UserId").Single().Value);
+       //     //Guid UserId = new Guid(principal.Claims.Where(c => c.Type == ClaimTypes).Select(c => c.Value).SingleOrDefault());
+       //     Guid UserId = new Guid(principal.Claims.Where(c => c.Type == "UserId").Single().Value);
 
-            var result = await _loginApp.GetDataLoginSite(UserId);
+       //     var result = await _loginApp.GetDataLoginSite(UserId);
 
-            return result;
-        }
+       //     return result;
+       // }
 
 
 

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Interfaces\ICustomerRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="LinqKit" Version="1.1.23" />
     <PackageReference Include="LinqKit.EntityFramework" Version="1.1.23" />

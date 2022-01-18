@@ -10,6 +10,6 @@ namespace Uzx.Application.Interfaces.Admin
 {
     public interface IMenusApp : IBaseApp<Menus, MenusTrans>
     {
-        Task<List<MenusTrans>> GetAllByUser(UsersPermissionsTrans searchRecord);
+        //Task<List<MenusTrans>> GetAllByUser(UsersPermissionsTrans searchRecord);
     }
 }

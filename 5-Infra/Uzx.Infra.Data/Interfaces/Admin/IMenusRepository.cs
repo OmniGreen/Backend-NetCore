@@ -9,7 +9,7 @@ namespace Uzx.Infra.Data.Interfaces.Admin
 {
     public interface IMenusRepository : IBaseRepository<Menus>
     {
-        Task<List<MenusTrans>> GetAllByUser(UsersPermissionsTrans searchRecord);
+        //Task<List<MenusTrans>> GetAllByUser(UsersPermissionsTrans searchRecord);
     }
 }
  

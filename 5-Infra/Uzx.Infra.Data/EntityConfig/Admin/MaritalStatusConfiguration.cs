@@ -9,7 +9,7 @@ namespace Uzx.Infra.Data.EntityConfig.Admin
     {
  public void Configure(EntityTypeBuilder<MaritalStatus> builder)
         {
-            builder.HasKey(s => s.MaritalStatusId);
+            builder.HasKey(s => s.IdMaritalStatus);
             builder.Property(s => s.Name).HasColumnType("varchar(200)");
             builder.Property(s => s.Description).HasColumnType("varchar(200)");  
         

@@ -4,10 +4,11 @@ using Uzx.Domain.Entities.Admin;
 
 namespace Uzx.Infra.Data.EntityConfig.Admin {
     public class GroupUsersConfiguration : IEntityTypeConfiguration<GroupUsers> {
-        public void Configure (EntityTypeBuilder<GroupUsers> builder) {
-            builder.HasKey (s => s.GroupUserId);
-            builder.Property (s => s.SystemId); //Guid
-            builder.Property (s => s.Name).HasColumnType ("varchar(200)");
+        public void Configure(EntityTypeBuilder<GroupUsers> builder)
+        {
+            builder.HasKey(s => s.IdGroupUser);
+            builder.Property(s => s.IdClient); //Guid
+            builder.Property(s => s.NmGroupUser).HasColumnType("varchar(200)");
 
         }
 

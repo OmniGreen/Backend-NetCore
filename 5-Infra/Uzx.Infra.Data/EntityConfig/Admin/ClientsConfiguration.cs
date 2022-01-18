@@ -7,6 +7,7 @@ namespace Uzx.Infra.Data.EntityConfig.Admin {
         public void Configure (EntityTypeBuilder<Clients> builder) {
             builder.HasKey (s => s.ClientId);
             builder.Property (s => s.ParentId); //Guid
+            builder.Property (s => s.IdTenant); //Guid
             builder.Property (s => s.AgentId); //Guid
             builder.Property (s => s.Person).HasColumnType ("varchar(200)");
             builder.Property (s => s.Name1).HasColumnType ("varchar(200)");
