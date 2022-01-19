@@ -4,7 +4,7 @@ using Uzx.Infra.TransferObjects.Admin;
 
 namespace Uzx.Services.WebApi.Interfaces.Admin
 {
-    public interface IGroupUsersMenusController : IBaseController<GroupUsersMenus, GroupUsersMenuTrans>
+    public interface IGroupUsersMenusController : IBaseController<GroupUsersMenus, GroupUsersMenusTrans>
     {
     }
 }

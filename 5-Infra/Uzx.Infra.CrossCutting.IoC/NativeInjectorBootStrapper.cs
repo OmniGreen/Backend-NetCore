@@ -50,7 +50,7 @@ namespace Uzx.Infra.CrossCutting.IoC
 
             services.AddScoped<IClientsApp, ClientsApp>();
             services.AddScoped<IClientsRepository, ClientsRepository>();
-            
+
             services.AddScoped<IClientsSystemsApp, ClientsSystemsApp>();
             services.AddScoped<IClientsSystemsRepository, ClientsSystemsRepository>();
 
@@ -82,11 +82,43 @@ namespace Uzx.Infra.CrossCutting.IoC
             services.AddScoped<IUsersSiteApp, UsersSiteApp>();
             services.AddScoped<IUsersSiteRepository, UsersSiteRepository>();
 
-
-
-
             services.AddScoped<IMenusApp, MenusApp>();
             services.AddScoped<IMenusRepository, MenusRepository>();
+
+            services.AddScoped<ILanguagesTraductionsApp, LanguagesTraductionsApp>();
+            services.AddScoped<ILanguagesTraductionsRepository, LanguagesTraductionsRepository>();
+
+            services.AddScoped<ILanguagesApp, LanguagesApp>();
+            services.AddScoped<ILanguagesRepository, LanguagesRepository>();
+
+            services.AddScoped<IMaritalStatusApp, MaritalStatusApp>();
+            services.AddScoped<IMaritalStatusRepository, MaritalStatusRepository>();
+
+            services.AddScoped<IModulesApp, ModulesApp>();
+            services.AddScoped<IModulesRepository, ModulesRepository>();
+
+            services.AddScoped<IModulesLanguagesApp, ModulesLanguagesApp>();
+            services.AddScoped<IModulesLanguagesRepository, ModulesLanguagesRepository>();
+
+            services.AddScoped<IModulesMenusApp, ModulesMenusApp>();
+            services.AddScoped<IModulesMenusRepository, ModulesMenusRepository>();
+
+            services.AddScoped<ITenantsApp, TenantsApp>();
+            services.AddScoped<ITenantsRepository, TenantsRepository>();
+            
+            services.AddScoped<ITraductionsApp, TraductionsApp>();
+            services.AddScoped<ITraductionsRepository, TraductionsRepository>();  
+            
+            services.AddScoped<IUsersApp, UsersApp>();
+            services.AddScoped<IUsersRepository, UsersRepository>();  
+            
+            services.AddScoped<IUsersPermissionsApp, UsersPermissionsApp>();
+            services.AddScoped<IUsersPermissionsRepository, UsersPermissionsRepository>(); 
+            
+            services.AddScoped<IUsersProfileApp, UsersProfileApp>();
+            services.AddScoped<IUsersProfileRepository, UsersProfileRepository>();
+
+       
 
 
 
@@ -103,7 +135,7 @@ namespace Uzx.Infra.CrossCutting.IoC
             // services.AddScoped<IRequestHandler<RemoveCustomerCommand, bool>, CustomerCommandHandler>();
 
             // Infra - Data
-            
+
             // services.AddScoped<IUnitOfWork, UnitOfWork>();
             // services.AddScoped<UzxBaseDbContext>();
 

@@ -35,7 +35,7 @@ namespace Uzx.Infra.Data.Repositories.Admin
                                           where (searchRecord.Name.Equals(null) || r.Name1.Contains(searchRecord.Name))
                                              && (searchRecord.Active == "2" || r.IsActive == Ativo)
                                              && r.IsDeleted == false
-                                             && r.ParentId == default(System.Guid)
+                                             && r.IdParent == default(System.Guid)
                                           select r).ToList();
                 }
                 else
@@ -45,7 +45,7 @@ namespace Uzx.Infra.Data.Repositories.Admin
                                           where (searchRecord.Name.Equals(null) || r.Name1.Contains(searchRecord.Name))
                                              && (searchRecord.Active == "2" || r.IsActive == Ativo)
                                              && r.IsDeleted == false
-                                             && (r.ParentId == searchRecord.MatrizClientId || r.ClientId == searchRecord.MatrizClientId)
+                                             && (r.IdParent == searchRecord.MatrizClientId || r.IdParent == searchRecord.MatrizClientId)
                                           select r).ToList();
                 }
 
@@ -57,7 +57,7 @@ namespace Uzx.Infra.Data.Repositories.Admin
                 foreach (var iten in resultado)
                 {
                     singleRecord = new ClientsTrans();
-                    singleRecord.ClientId = iten.ClientId;
+                    singleRecord.ClientId = iten.IdClient;
                     singleRecord.Person = iten.Person;
                     singleRecord.Name1 = iten.Name1;
                     singleRecord.Name2 = iten.Name2;

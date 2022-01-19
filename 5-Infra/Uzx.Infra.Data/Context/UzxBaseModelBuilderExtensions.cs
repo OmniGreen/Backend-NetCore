@@ -21,14 +21,14 @@ public static class ModelBuilderExtensions
            {
                Name1 = "Administrador Uzenix",
                Name2 = "Admin",
-               ParentId = default(System.Guid),
+               IdParent = default(System.Guid),
                Person = "1",
                IsAdmin = true,
                IsActive = true,
                IsDeleted = false,
                DtInsert = DateTime.Now,
                UserIdInsert = default(System.Guid),
-               ClientId = ClientId
+               IdClient = ClientId
            }
         );
 

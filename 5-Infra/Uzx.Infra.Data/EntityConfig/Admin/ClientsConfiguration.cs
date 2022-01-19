@@ -5,10 +5,10 @@ using Uzx.Domain.Entities.Admin;
 namespace Uzx.Infra.Data.EntityConfig.Admin {
     public class ClientsConfiguration : IEntityTypeConfiguration<Clients> {
         public void Configure (EntityTypeBuilder<Clients> builder) {
-            builder.HasKey (s => s.ClientId);
-            builder.Property (s => s.ParentId); //Guid
+            builder.HasKey (s => s.IdClient);
+            builder.Property (s => s.IdParent); //Guid
             builder.Property (s => s.IdTenant); //Guid
-            builder.Property (s => s.AgentId); //Guid
+            builder.Property (s => s.IdAgent); //Guid
             builder.Property (s => s.Person).HasColumnType ("varchar(200)");
             builder.Property (s => s.Name1).HasColumnType ("varchar(200)");
             builder.Property (s => s.Name2).HasColumnType ("varchar(200)");

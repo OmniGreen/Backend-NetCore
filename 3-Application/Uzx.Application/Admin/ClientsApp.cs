@@ -17,9 +17,6 @@ namespace Uzx.Application.Admin
             _clientsRepo = repo;
         }
 
-        public ClientsFind List(ClientsFind searchRecord)
-        {
-            return _clientsRepo.List(searchRecord);
-        }
+    
     }
 }

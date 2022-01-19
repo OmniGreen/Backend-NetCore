@@ -11,7 +11,7 @@ namespace Uzx.Application.AutoMapper
     {
         public DomainToViewModelMappingProfile()
         {
-            
+
             CreateMap<BaseEntity, BaseTrans>();
 
             CreateMap<Banners, BannersTrans>();
@@ -55,6 +55,45 @@ namespace Uzx.Application.AutoMapper
 
             CreateMap<Users, UsersTrans>();
             CreateMap<UsersTrans, Users>();
+
+            CreateMap<GroupUsers, GroupUsersTrans>();
+            CreateMap<GroupUsersTrans, GroupUsers>();
+
+            CreateMap<GroupUsersMenus, GroupUsersMenusTrans>();
+            CreateMap<GroupUsersMenusTrans, GroupUsersMenus>();
+
+            CreateMap<Languages, LanguagesTrans>();
+            CreateMap<LanguagesTrans, Languages>();
+
+            CreateMap<LanguagesTraductions, LanguagesTraductionsTrans>();
+            CreateMap<LanguagesTraductionsTrans, LanguagesTraductions>();
+
+            CreateMap<MaritalStatus, MaritalStatusTrans>();
+            CreateMap<MaritalStatusTrans, MaritalStatus>();
+
+            CreateMap<Menus, MenusTrans>();
+            CreateMap<MenusTrans, Menus>();
+
+            CreateMap<Modules, ModulesTrans>();
+            CreateMap<ModulesTrans, Modules>();
+
+            CreateMap<ModulesLanguages, ModulesLanguagesTrans>();
+            CreateMap<ModulesLanguagesTrans, ModulesLanguages>();
+
+            CreateMap<ModulesMenus, ModulesMenusTrans>();
+            CreateMap<ModulesMenusTrans, ModulesMenus>();
+
+            CreateMap<Tenants, TenantsTrans>();
+            CreateMap<TenantsTrans, Tenants>();
+
+            CreateMap<Traductions, TraductionsTrans>();
+            CreateMap<TraductionsTrans, Traductions>();
+
+            CreateMap<UsersPermissions, UsersPermissionsTrans>();
+            CreateMap<UsersPermissionsTrans, UsersPermissions>();
+
+            CreateMap<UsersProfile, UsersProfileTrans>();
+            CreateMap<UsersProfileTrans, UsersProfile>();
 
         }
     }

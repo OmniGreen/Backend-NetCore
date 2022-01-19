@@ -8,13 +8,13 @@ namespace Uzx.Domain.Entities.Admin
     public class Clients : BaseEntityNaoVersionada
     {
         [Key]
-         public Guid ClientId { get; set; }
+        public Guid IdClient { get; set; }
 
-        public Guid ParentId { get; set; }
+        public Guid IdParent { get; set; }
 
         public Guid IdTenant { get; set; }
 
-        public Guid? AgentId { get; set; }
+        public Guid? IdAgent { get; set; }
 
         public string Person { get; set; }
 
@@ -35,5 +35,5 @@ namespace Uzx.Domain.Entities.Admin
     }
 
 
-     
+
 }

@@ -6,7 +6,14 @@ namespace Uzx.Infra.TransferObjects.Admin
 {
     public class ClientsTrans : BaseTrans
     {
-        public Guid ParentId { get; set; }
+        public Guid IdClient { get; set; }
+
+        public Guid IdParent { get; set; }
+
+        public Guid IdTenant { get; set; }
+
+        public Guid? IdAgent { get; set; }
+
         public string Person { get; set; }
         public string Name1 { get; set; }
         public string Name2 { get; set; }

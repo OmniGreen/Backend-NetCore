@@ -4,7 +4,7 @@ using Uzx.Infra.TransferObjects.Admin;
 
 namespace Uzx.Application.Interfaces.Admin
 {
-    public interface IGroupUsersMenusApp : IBaseApp<GroupUsersMenus, GroupUsersMenuTrans>
+    public interface IGroupUsersMenusApp : IBaseApp<GroupUsersMenus, GroupUsersMenusTrans>
     {
     }
 }

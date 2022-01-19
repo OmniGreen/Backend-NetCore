@@ -7,7 +7,7 @@ namespace Uzx.Application.Interfaces.Admin
 {
     public interface IClientsApp : IBaseApp<Clients, ClientsTrans>
     {
-        public ClientsFind List(ClientsFind searchRecord);
+      
     }
    
 }

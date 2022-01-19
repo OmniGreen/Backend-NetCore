@@ -4,6 +4,7 @@ using Uzx.Infra.TransferObjects.Admin;
 using Microsoft.AspNetCore.Mvc;
 using Uzx.Services.WebApi.Interfaces.Admin;
 using Uzx.Application.Interfaces.Admin;
+using AutoMapper;
 
 namespace Uzx.Services.WebApi.Controllers.Admin
 {
@@ -13,8 +14,8 @@ namespace Uzx.Services.WebApi.Controllers.Admin
     {
         private ILanguagesApp _interfaceApp;
         //
-        public LanguagesController(ILanguagesApp interfaceApp)
-            : base(interfaceApp)
+        public LanguagesController(IMapper mapper,ILanguagesApp interfaceApp)
+            : base(mapper,interfaceApp)
         {
             _interfaceApp = interfaceApp;
         }
